@@ -36,6 +36,14 @@ nav a {
 
 } 
 
+footer {
+    background-color: #4CAF50;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
  
 
 .featured { 
