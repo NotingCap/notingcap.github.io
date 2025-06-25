@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quotation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <style>
+    :root {
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --text: #222;
+      --light-bg: #f9f9f9;
+      --border: #e0e0e0;
+      --accent: #007aff;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--light-bg);
+      margin: 2rem;
+      color: var(--text);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .section {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section div {
+      flex: 1;
+      font-size: 0.9rem;
+    }
+
+    .section h5 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      background: white;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f1f1f1;
+      font-weight: 600;
+    }
+
+    td.text-right {
+      text-align: right;
+    }
+
+    .totals td {
+      font-weight: 600;
+    }
+
+    .btn-add {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .modal-header h5 {
+      font-weight: 600;
+    }
+
+    .form-control {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <h1>QUOTATION</h1>
+      <p style="font-size: 0.9rem; margin-bottom: 0;">
+        Your Company Name<br />
+        Your Address Line 1<br />
+        Your Address Line 2<br />
+        Phone: 12345678 &nbsp; | &nbsp; Mobile: 12345678
+      </p>
+    </div>
+    <img src="https://admissions.au.edu/wp-content/uploads/2019/08/science.jpg" alt="Company Logo" />
+  </header>
+
+  <div class="section">
+    <div>
+      <h5>To:</h5>
+      <p>
+        Sample customer name 001<br />
+        Sample address line 1<br />
+        Sample address line 2<br />
+        Sample address line 3
+      </p>
+    </div>
+    <div>
+      <h5>Ship To:</h5>
+      <p>
+        Sample customer name 001<br />
+        Ship to address line 1<br />
+        Ship to address line 2<br />
+        Ship to address line 3
+      </p>
+    </div>
+    <div>
+      <h5>Date</h5>
+      <p id="currentDate">Loading...</p>
+    </div>
+  </div>
+
+  <button class="btn-add" data-toggle="modal" data-target="#exampleModal">Add Item</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th class="text-right">Unit Price</th>
+        <th class="text-right">Amount</th>
+      </tr>
+    </thead>
+    <tbody id="dataTable">
+      <!-- Items will be injected here -->
+    </tbody>
+    <tfoot>
+      <tr class="totals">
+        <td colspan="3" class="text-right">Subtotal</td>
+        <td class="text-right" id="subTotal">0.00</td>
+      </tr>
+      <tr class="totals">
+        <td colspan="3" class="text-right">Sales Tax (7%)</td>
+        <td class="text-right" id="salesTax">0.00</td>
+      </tr>
+      <tr class="totals">
+        <td colspan="3" class="text-right">Shipping</td>
+        <td class="text-right">0.00</td>
+      </tr>
+      <tr class="totals">
+        <td colspan="3" class="text-right">Total Due</td>
+        <td class="text-right" id="totalDue">0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <footer>
+    <p>
+      <strong>Make all checks payable to:</strong><br />
+      <i>Your Company Name</i><br /><br />
+      <strong>If you have any questions regarding this invoice, call us.</strong><br /><br />
+      <strong>THANK YOU FOR YOUR BUSINESS</strong>
+    </p>
+    <p>WHO ARE YOU?</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Item</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" id="desc" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="qty" class="form-control" min="1" />
+          </div>
+          <div class="form-group">
+            <label>Unit Price</label>
+            <input type="number" id="unitPrice" class="form-control" min="0" step="0.01" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="addItem()">Add</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+    const items = [];
+
+    function addItem() {
+      const desc = document.getElementById("desc").value;
+      const qty = parseFloat(document.getElementById("qty").value);
+      const price = parseFloat(document.getElementById("unitPrice").value);
+      if (!desc || qty <= 0 || price < 0) return;
+
+      items.push({ desc, qty, price });
+      $('#exampleModal').modal('hide');
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById("dataTable");
+      tbody.innerHTML = "";
+
+      let subTotal = 0;
+      items.forEach(item => {
+        const amount = item.qty * item.price;
+        subTotal += amount;
+
+        const row = `<tr>
+            <td>${item.qty}</td>
+            <td>${item.desc}</td>
+            <td class="text-right">${item.price.toFixed(2)}</td>
+            <td class="text-right">${amount.toFixed(2)}</td>
+          </tr>`;
+        tbody.insertAdjacentHTML("beforeend", row);
+      });
+
+      const tax = subTotal * 0.07;
+      const total = subTotal + tax;
+
+      document.getElementById("subTotal").innerText = subTotal.toFixed(2);
+      document.getElementById("salesTax").innerText = tax.toFixed(2);
+      document.getElementById("totalDue").innerText = total.toFixed(2);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("currentDate").textContent = new Date().toLocaleDateString();
+    });
+  </script>
+
+</body>
+</html>
