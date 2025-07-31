@@ -1,8 +1,10 @@
-// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  base: '/midterm-quotation-app/', // repo name
   plugins: [react()],
-  base: '/notingcap.github.io/', // ← important!
+  build: {
+    outDir: 'docs', // this puts built files in the docs/ folder
+  },
 })
